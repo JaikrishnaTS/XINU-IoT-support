@@ -1,0 +1,15 @@
+<ddl>
+	
+	<device name = "PIR">
+        <pin type = "gpio" mode = "in">
+            <gpiobank>1</gpiobank>
+            <gpiopin>12</gpiopin>	 
+        </pin>
+        <presentcolor red = "250" green = "255" blue = "0">
+        </presentcolor>
+        <absentcolor red = "255" green = "0" blue = "0">
+        </absentcolor>
+        <ontime>5</ontime>
+	</device>
+
+</ddl>

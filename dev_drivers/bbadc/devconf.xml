@@ -1,0 +1,17 @@
+<devconf>
+    <name>adc</name>
+    <init>adcinit</init>
+    <open>ionull</open>
+    <close>ionull</close>
+    <read>adcread</read>
+    <write>ionull</write>
+    <seek>ionull</seek>
+    <getc>ionull</getc>
+    <putc>ionull</putc>
+    <control>ionull</control>
+    <intr>adchandler</intr>
+    <csr>0x44e0d000</csr>
+    <irq>16</irq>
+    <depends>top</depends>
+    <devname>ADC</devname>
+</devconf>

@@ -1,0 +1,499 @@
+<!--DOCTYPE html-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>DOS IOT PROJECT</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/datepicker3.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">  
+        <!--Icons-->
+        <script src="js/lumino.glyphs.js"></script>
+    </head>
+    
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><span>SMART</span> &nbsp;LIGHT</a>
+                    <label id="LDR" class="user-menu">
+                        
+                    </label>
+                    <label class="user-menu">
+                        CURRENT AMBIENT LIGHT :
+                    </label>
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+        
+        <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+            <ul class="nav menu">
+                <li ><a href="dashboard.html"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
+                <li><a href="about.html" target="_blank"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> About </a></li>
+                <!--<li><a href="diagnostic.html" target="_blank"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Diagnosis </a></li>-->
+            </ul>
+        </div><!--/.sidebar-->
+        
+        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Dashboard</h1>
+                </div>
+            </div><!--/.row-->
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-3" style="width: 300 px;">
+                    <div class="panel panel-blue panel-widget " style="width: 300 px;">
+                        <div class="row no-padding" id="r1_color1" style="width: 300px;background-color: white">
+                            <div class="col-sm-3 col-lg-5 widget-left" style="width: 300 px;">
+                                <svg class="glyph stroked home"><use xlink:href="#stroked-home"/></svg>
+                            </div>
+                            <div class="col-sm-9 col-lg-7 widget-right" id="r1_color2" style="width: 300px;height: 150px;">
+                                <div class="large" onclick="printroom(1)"><a href="#selection" id="room1" value="1" >Room 1</a></div>
+                                <div class="text-muted" id="r1_det">MODE:OFF</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			
+                <div class="col-xs-12 col-md-6 col-lg-3" style="width: 300 px;">
+                    <div class="panel panel-orange panel-widget" style="width: 300 px;">
+                        <div class="row no-padding" id="r2_color1" style="width: 300px;background-color: white">
+                            <div class="col-sm-3 col-lg-5 widget-left" style="width: 300 px;">
+                                <svg class="glyph stroked home"><use xlink:href="#stroked-home"/></svg>
+                            </div>
+                            <div class="col-sm-9 col-lg-7 widget-right" id="r2_color2" style="width: 300px;height: 150px;">
+                                <div class="large" onclick="printroom(2)"><a href="#selection" id="room2" value="2" >Room 2</a></div>
+                                <div class="text-muted" id="r2_det">MODE:OFF</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="row">
+				<br>
+			</div>
+            <!--<div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="panel panel-teal panel-widget">
+                        <div class="row no-padding">
+                            <div class="col-sm-3 col-lg-5 widget-left">
+                                <svg class="glyph stroked home"><use xlink:href="#stroked-home"/></svg>
+                            </div>
+                            <div class="col-sm-9 col-lg-7 widget-right">
+                                <div class="large"><a href="room3.html">Room 3</a></div>
+                                <div class="text-muted">MODE:</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="panel panel-red panel-widget">
+                        <div class="row no-padding">
+                            <div class="col-sm-3 col-lg-5 widget-left">
+                                <svg class="glyph stroked home"><use xlink:href="#stroked-home"/></svg>
+                            </div>
+                            <div class="col-sm-9 col-lg-7 widget-right">
+                                <div class="large"><a href="room4.html">Room 4</a></div>
+                                <div class="text-muted">MODE:</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>--><!--/.row-->
+        </div>    
+		
+		<div id="selection">
+		<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="col-lg-12" >
+                <div class="panel panel-default">
+                    <div class="panel-body tabs">
+                        <ul class="nav nav-tabs">
+                            <li class="active"  onclick="printID('Manual Mode')"><a id ="Hie" href="#tab1" data-toggle="tab">Manual Mode</a></li>
+                            <li onclick="printID('Schedule Mode')"><a href="#tab2" data-toggle="tab">Schedule Mode</a></li>
+                            <li onclick="printID('LDR Mode')"><a href="#tab3" data-toggle="tab">LDR Mode</a></li>
+                        </ul>
+                        
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="tab1">
+                                
+                             
+                               
+                                   <!-- <form role="form">-->
+
+                                    Select your favorite color:
+                                    <input type="color" name="favcolor" value="#ff0000" id="hex-color-inputt1">
+                                        
+									
+									<!--Energy Saving Mode:
+                                        <div class = "btn-group" data-toggle = "buttons" id="EnergySavingModeIdt1">
+                                            
+                                            <label class = "btn btn-primary">
+                                                <input type = "radio" name ="options" id = "optionsRadios1t1" value="option1" checked> ON
+                                                    </label>
+                                            
+                                            <label class = "btn btn-primary">
+                                                <input type = "radio" name = "options" id = "optionsRadios2t1" value="option2"> OFF
+                                                    </label>
+                                            
+                                            
+                                        </div>-->
+										<p>
+									<div class="form-group">
+                                    <label>Energy Saving Mode:</label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios1" id="optionsRadios1t1" value="">ON
+                                                </label>
+                                        
+                                        <label>
+                                            <input type="radio" name="optionsRadios1" id="optionsRadios2t1" value="" checked="checked">OFF
+                                                </label>
+                                    </div>
+                                    
+                                    </div>
+									</p>
+                                <!--&nbsp;-->
+                               <!-- <button type="submit" class="btn btn-primary">Submit Button</button>
+                                
+                                        </form>-->
+                                        <!--
+                                    <p id="colort1">Color</p>
+									<p id="optt1">option</p>
+                                        -->
+
+                            </div>
+							
+                            <div class="tab-pane fade" id="tab2">
+							
+								Select your favorite color:
+                                    <input type="color" name="favcolor" value="#ff0000" id="hex-color-inputt2">
+								<p><br>
+                                Schedule Time :
+                                From
+                                <input type="time" id="fromTime" value="17:00"/>
+                                To
+                                <input type="time" id="toTime" value="22:00" />
+                                </p>
+                                
+								<!--Energy Saving Mode:
+                                        <div class = "btn-group" data-toggle = "buttons" id="EnergySavingModeIdt2">
+                                            
+                                            <label class = "btn btn-primary">
+                                                <input type = "radio" name ="options" id = "optionsRadios1t2" value="option1" checked> ON
+                                                    </label>
+                                            
+                                            <label class = "btn btn-primary">
+                                                <input type = "radio" name = "options" id = "optionsRadios2t2" value="option2"> OFF
+                                                    </label>
+                                            
+                                            
+                                        </div>
+								Energy Saving Mode:-->
+                                <p>
+									<div class="form-group">
+                                    <label>Energy Saving Mode:</label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios2" id="optionsRadios1t2" value="">ON
+                                                </label>
+                                        
+                                        <label>
+                                            <input type="radio" name="optionsRadios2" id="optionsRadios2t2" value="" checked="checked">OFF
+                                                </label>
+                                    </div>
+                                    
+                                    </div>
+									</p>
+                                    <!--
+								<p id="colort2">Color</p>
+								<p id="ftime">time</p>
+								<p id="ttime">time</p>
+								<p id="hh">hh</p>
+								<p id="mm">mm</p>
+								<p id="optt2">option</p>
+                                    -->
+                                
+                                
+                            </div>
+                            <div class="tab-pane fade" id="tab3">
+                                
+                                Select your favorite color:
+                                    <input type="color" name="favcolor" value="#ff0000" id="hex-color-inputt3">
+
+								<p><br>Enter Minimum Intensity and Maximum Intensity to switch on or switch off the device accordingly </p>
+                                <p>
+                                Minimum Intensity:
+                                
+                                <input type="number" placeholder="0" id="minint" value="0" min="0" max="100" step="10">
+                                    </p>
+                                    <p>
+                                Maximum Intensity:
+                                    
+                                    <input type="number" placeholder="100" id="maxint" value="100" min="0" max="100" step="10">
+                                    </p>
+																
+								<!--Energy Saving Mode:
+                                        <div class = "btn-group" data-toggle = "buttons" id="EnergySavingModeIdt3">
+                                            
+                                            <label class = "btn btn-primary">
+                                                <input type = "radio" name ="options" id = "optionsRadios1t3" value="option1" checked> ON
+                                                    </label>
+                                            
+                                            <label class = "btn btn-primary">
+                                                <input type = "radio" name = "options" id = "optionsRadios2t3" value="option2"> OFF
+                                                    </label>
+                                            
+                                            
+                                        </div>-->
+									<p>
+									<div class="form-group">
+                                    <label>Energy Saving Mode:</label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios3" id="optionsRadios1t3" value="">ON
+                                                </label>
+                                        
+                                        <label>
+                                            <input type="radio" name="optionsRadios3" id="optionsRadios2t3" value="" checked="checked">OFF
+                                                </label>
+                                    </div>
+                                    
+                                    </div>
+									</p>
+									
+                                    <!--
+									<p id="colort3">Color</p>
+									<p id="min">min</p>
+									<p id="max">max</p>	
+									<p id="optt3">option</p>
+                                    -->
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/.panel-->
+                <div>
+                    <button id="Done" onclick="manipulation()">Done</button>
+                    <!--
+					<p id="room">Room</p>
+					<p id="mode">Mode</p>
+					<p id="send">Send</p>
+                    -->
+                </div>
+				<div>
+                    <button id="SystemOFF" onclick="switchoff()">Lights OFF</button>
+                </div>
+            </div><!--/.col-->
+			</div>
+			</div>
+			
+			<script type="text/javascript">
+            connection = new WebSocket('ws://' + location.host + '/ws' );
+			var room = 0;
+			var modecheck="None";
+			var mode = 0; //default is manual mode
+			var colcode;
+			var color = 0;
+			var ensav = "Energy Saving Mode OFF";
+			var flag = 0;//default is energy saving off
+			var send="";
+			var minset=0
+			var maxset=100; //default values set in input
+			var ftime = "17:00";
+			var ttime = "22:00";   //default values set in input
+			
+			connection.onmessage = function(evt){
+                document.getElementById("LDR").innerHTML = evt.data.toString();
+			};
+
+			function printroom(r) {
+				room = r;
+				if (room == 2){
+					document.getElementById("r2_color1").style="width: 300px;background-color:#d7dada";
+					document.getElementById("r2_color2").style="width: 300px;background-color:#d7dada;height: 150px;";
+					document.getElementById("r1_color1").style="width: 300px;background-color:white";
+					document.getElementById("r1_color2").style="width: 300px;background-color:white;height: 150px;";
+				}else{
+					document.getElementById("r1_color1").style="width: 300px;background-color:#d7dada";
+					document.getElementById("r1_color2").style="width: 300px;background-color:#d7dada;height: 150px;";	
+					document.getElementById("r2_color1").style="width: 300px;background-color:white";
+					document.getElementById("r2_color2").style="width: 300px;background-color:white;height: 150px;";
+				}
+				
+			}
+            function printID(e)
+            {
+                //e =  e || window.event;
+                //e = e.srcElement;
+                //console.log( e);
+                modecheck=e;
+                //document.getElementById("t").innerHTML=idtag;
+
+            }
+            function manipulation()
+            {
+				if(room == 0){
+					//alert("Room not selected :  Taking default Room 1");
+					//room = 1;
+					printroom(1);
+				}
+				if(modecheck == "None"){
+					//alert("Taking Manual mode and current settings by default");
+					modecheck = "Manual Mode";
+				}
+                if(modecheck == "Manual Mode")
+                {
+                    //f="Manual Mode";
+                    mode = "0";
+					colcode = document.getElementById("hex-color-inputt1").value;
+					colcode = colcode.substring(1,7);
+					color = parseInt(colcode,16);
+					//colcode = parseInt(colcode,16);
+					//var flag="";
+					//var mode="Manual Mode";
+					if(document.getElementById("optionsRadios1t1").checked)
+					{
+						flag = 1;//"on"
+						ensav = "Energy Saving Mode ON"
+					}
+					else{
+						flag = 0;//"off"
+						ensav = "Energy Saving Mode OFF"	
+					}
+					//document.getElementById("colort1").innerHTML=colcode;
+					//document.getElementById("colort1").innerHTML=color;
+					//document.getElementById("optt1").innerHTML=flag;
+					//document.getElementById("mode").innerHTML=modecheck;
+                    /*
+					if (room == 1){
+						//document.getElementById("r1_det").innerHTML="<br>"+"MODE:"+modecheck+"<br>"+ensav;
+						//document.getElementById("r1_color2").style="height: 150px";
+					}
+					else{
+						//document.getElementById("r2_det").innerHTML="<br>"+"MODE:"+modecheck+"<br>"+ensav;
+					}
+                    */
+					send = room+" "+mode+" "+color+" "+flag;
+                }
+
+                if(modecheck == "Schedule Mode")
+                {
+					ftime = document.getElementById("fromTime").value;
+					var ft_disp = ftime;
+					ttime = document.getElementById("toTime").value;
+					var tt_disp = ttime;
+					var ftimehh = ftime.substring(0,2);
+					//ftimehh = ftime.substring(0,2);
+					var ftimemm = ftime.substring(3,5);
+					var ttimehh = ttime.substring(0,2);
+					var ttimemm = ttime.substring(3,5);
+					var hh = parseInt(ftimehh);
+					hh = hh * 60;
+					ftime = hh + parseInt(ftimemm);
+					hh = parseInt(ttimehh);
+					hh = hh * 60;
+					ttime = hh + parseInt(ttimemm);
+					colcode=document.getElementById("hex-color-inputt2").value;
+					colcode = colcode.substring(1,7);
+					color = parseInt(colcode,16);
+					//var flag="";
+					//var mode="Manual Mode";
+					mode = "1";
+					if(document.getElementById("optionsRadios1t2").checked)
+					{
+						flag = 1;//"on"
+						ensav = "Energy Saving Mode ON"
+					}
+					else{
+						flag = 0;//"off"
+						ensav = "Energy Saving Mode OFF"
+					}
+					//document.getElementById("colort2").innerHTML=color;
+                    //document.getElementById("ftime").innerHTML=ftime;
+					//document.getElementById("ttime").innerHTML=ttime;
+					//document.getElementById("optt2").innerHTML=flag;
+                    //document.getElementById("mode").innerHTML=modecheck;
+                    /*
+					if (room == 1)
+						document.getElementById("r1_det").innerHTML="<br>"+"MODE:"+modecheck+"<br>"+ensav+"<br>"+"From:"+ft_disp+" To:"+tt_disp;
+					else
+						document.getElementById("r2_det").innerHTML="<br>"+"MODE:"+modecheck+"<br>"+ensav+"<br>"+"From:"+ft_disp+" To:"+tt_disp;
+                        */
+					send = room+" "+mode+" "+color+" "+flag+" "+ftime+" "+ttime;
+                }
+                   
+				if(modecheck == "LDR Mode")
+                {
+					minset = document.getElementById("minint").value;
+					maxset = document.getElementById("maxint").value;
+					if(parseInt(minset) > parseInt(maxset)){
+						document.getElementById("minint").value=0;
+						alert("Min intensity less than max intensity : Defailt of 0 taken");
+						minset = 0;
+					}
+					mode = "2";
+					colcode=document.getElementById("hex-color-inputt3").value;
+					colcode = colcode.substring(1,7);
+					color = parseInt(colcode,16);
+					if(document.getElementById("optionsRadios1t3").checked)
+					{
+						flag = 1;//"on"
+						ensav = "Energy Saving Mode ON"
+					}
+					else{
+						flag = 0;//"off"
+						ensav = "Energy Saving Mode OFF"
+					}
+                    /*
+					document.getElementById("colort3").innerHTML=color;
+                    document.getElementById("min").innerHTML=minset;
+					document.getElementById("max").innerHTML=maxset;
+					document.getElementById("optt3").innerHTML=flag;
+                    document.getElementById("mode").innerHTML=modecheck;
+					if (room == 1)
+						document.getElementById("r1_det").innerHTML="<br>"+"MODE:"+modecheck+"<br>"+ensav+"<br>"+"Min Intensity:"+minset+" Max Intensity:"+maxset;
+					else
+						document.getElementById("r2_det").innerHTML="<br>"+"MODE:"+modecheck+"<br>"+ensav+"<br>"+"Min Intensity:"+minset+" Max Intensity:"+maxset;
+						
+                        */
+					send = room+" "+mode+" "+color+" "+flag+" "+minset+" "+maxset;
+                }
+				//document.getElementById("room").innerHTML=room;
+				//document.getElementById("send").innerHTML=send;
+                connection.send(send);
+            }
+			function switchoff(){
+				if(room == 0){
+					// alert("Room not selected :  Taking default Room 1");
+					//room = 1;
+					printroom(1);
+				}
+				send = room+" "+"0"+" "+"0"+" "+"0"; 
+                /*
+				document.getElementById("send").innerHTML=send;
+				if (room == 1)
+						document.getElementById("r1_det").innerHTML="MODE:OFF";
+				else
+					document.getElementById("r2_det").innerHTML="MODE:OFF";
+                    */
+                connection.send(send);
+			}
+            
+        </script>
+            
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/chart.min.js"></script>
+        <script src="js/chart-data.js"></script>
+        <script src="js/easypiechart.js"></script>
+        <script src="js/easypiechart-data.js"></script>
+        <script src="js/bootstrap-datepicker.js"></script>
+    </body>
+    
+</html>
+

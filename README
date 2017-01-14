@@ -1,0 +1,22 @@
+
+
+Smart Light implementation on Beaglebone Black using Xinu
+
+The source package contains the following
+  - Modified Xinu source code (in Xinu directory)
+  - The Python webserver and supporting files (in webapp directory)
+  - The applications developed for demonstration and working of the project (in xinu_apps directory)
+  - Project Report (in report.pdf)
+  - DDL parser application for configuring Xinu source with any device driver package (ddlpars.py)
+  - DDL parser application (Xinu/compile/ddl-parser.py) for configuring a particular application (obdemo) with user defined XML (Xinu/compile/pirddl.xml)
+  - Device driver packages developed that are compatible with the ddlpars.py application (in dev_drivers directory)
+
+USAGE:
+XINU:
+    The Xinu OS by default starts in the shell mode and appropriate applications are invoked in each of the things:
+      - iotled CMD_PORT -> invoked in room devices
+      - udpsense EDGE_IP EDGE_PORT -> invoked in the outdoor sensor
+
+WEBAPP:
+    Activate the virtenv in webapp/dosenv and then invoke the webserv.py program
+    devconf.py is used to set the parameters

@@ -1,0 +1,17 @@
+<devconf>
+    <name>gpio</name>
+    <init>ionull</init>
+    <open>ionull</open>
+    <close>ionull</close>
+    <read>digital_read</read>
+    <write>digital_write</write>
+    <seek>ionull</seek>
+    <getc>ionull</getc>
+    <putc>ionull</putc>
+    <control>ionull</control>
+    <intr>ionull</intr>
+    <csr></csr>
+    <irq></irq>
+    <depends>top</depends>
+    <devname>GPIO</devname>
+</devconf>
